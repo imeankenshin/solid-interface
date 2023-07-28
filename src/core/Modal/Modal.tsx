@@ -8,8 +8,8 @@ import { useFocusableElements } from "~/hooks/elements"
 interface ModalContextProps {
   titleID: string
   descriptionID: string
-  isOpen: Accessor<boolean>
-  open: Accessor<true>
+  open: Accessor<boolean>
+  show: Accessor<true>
   close: Accessor<false>
 }
 
@@ -28,13 +28,13 @@ interface ModalRootProps extends JSX.HTMLAttributes<HTMLDivElement> {}
  */
 const Root = (props: ModalRootProps): JSX.Element => {
   let dialogRef: HTMLDivElement
-  const [isOpen, setIsOpen] = createSignal(false)
+  const [open, setOpen] = createSignal(false)
   const id = createUniqueId()
   const titleID = `title-${id}`
   const descriptionID = `description-${id}`
 
   createEffect(() => {
-    if (isOpen()) {
+    if (open()) {
       document.body.style.overflow = "hidden"
 
       // モーダル内のフォーカス可能な要素のうち、最初の要素にフォーカスを当てる
@@ -60,25 +60,25 @@ const Root = (props: ModalRootProps): JSX.Element => {
         ;(element as HTMLElement).removeAttribute("tabindex")
       })
     }
-  }, [isOpen()])
+  }, [open()])
 
   return (
     <ModalContext.Provider
       value={{
         titleID,
         descriptionID,
-        isOpen,
-        open: () => setIsOpen(true),
-        close: () => setIsOpen(false),
+        open,
+        show: () => setOpen(true),
+        close: () => setOpen(false),
       }}
     >
-      <Show when={isOpen()}>
+      <Show when={open()}>
         <Portal>
           <div
             {...props}
             id={id}
             ref={(el) => (dialogRef = el)}
-            data-status={isOpen() ? "open" : "closed"}
+            data-status={open() ? "open" : "closed"}
           >
             {props.children}
           </div>
@@ -121,7 +121,7 @@ const Content = (props: ModalContentProps) => {
           e.preventDefault()
         }
       }}
-      data-status={context?.isOpen() ? "open" : "closed"}
+      data-status={context?.open() ? "open" : "closed"}
       aria-labelledby={context?.titleID}
       aria-describedby={context?.descriptionID}
     >
