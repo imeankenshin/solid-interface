@@ -1,8 +1,4 @@
 import { Title } from "solid-start"
-import { Button } from "~/components/Button"
-import { Modal } from "~/components/Modal"
-import { Stepper } from "~/components/stepper/Stepper"
-import { Toggle } from "~/components/Toggle"
 
 export default () => {
   return (
