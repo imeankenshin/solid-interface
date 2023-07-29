@@ -1,0 +1,29 @@
+{
+  "name": "@solid-interface/modal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit --pretty"
+  },
+  "files": [
+    "dist"
+  ],
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "frontend",
+    "solid",
+    "solidjs",
+    "solid-js",
+    "component",
+    "components",
+    "modal"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "solid-js": "^1.7.8"
+  }
+}
