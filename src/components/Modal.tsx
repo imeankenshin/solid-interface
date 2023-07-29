@@ -1,5 +1,5 @@
 import { JSX, createUniqueId } from "solid-js"
-import ModalCore from "~/core/Modal"
+import ModalCore from "packages/components/modal"
 
 interface ModalComponent {
   isOpen: boolean

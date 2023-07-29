@@ -1,6 +1,6 @@
 import { Title } from "solid-start"
 import { Button } from "~/components/Button"
-import Modal from "~/core/Modal"
+import Modal from "packages/components/modal"
 import { Toggle } from "~/components/Toggle"
 
 export default () => {
