@@ -1,19 +1,19 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss"
 
 export default {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       fontSize: {
-        "label-sm":  ["0.875rem","1.25rem"]
+        base: ["1rem", "1.25"],
+        "label-sm": ["0.875rem", "1"],
       },
       fontFamily: {
-        text: ['SF Pro Text'], // add Inter to the list
-        display:['SF Pro Display'],
-        mono: ['SF Mono']
-      }
+        text: ["SF Pro Text"], // add Inter to the list
+        display: ["SF Pro Display"],
+        mono: ["SF Mono"],
+      },
     },
   },
   plugins: [],
 } satisfies Config
-
