@@ -91,6 +91,12 @@ importers:
         specifier: ^1.7.8
         version: 1.7.8
 
+  packages/hooks:
+    dependencies:
+      solid-js:
+        specifier: ^1.7.8
+        version: 1.7.8
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
