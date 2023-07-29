@@ -2,9 +2,9 @@
   "name": "@solid-interface/modal",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsup src --dts",
     "lint": "tsc --noEmit --pretty"
   },
   "files": [

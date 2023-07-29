@@ -1,6 +1,6 @@
 import { Title } from "solid-start"
 import { Button } from "~/components/Button"
-import Modal from "packages/components/modal"
+import Modal from "packages/components/modal/src"
 import { Toggle } from "~/components/Toggle"
 
 export default () => {
@@ -52,4 +52,7 @@ export default () => {
       </section>
     </main>
   )
+}
+function createSignal(arg0: boolean): [any, any] {
+  throw new Error("Function not implemented.")
 }
