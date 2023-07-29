@@ -76,11 +76,10 @@ export function Button({
         //* boolean
         "bg-gray-100 cursor-not-allowed": disabled, // disabled
         //* sizing
-        "px-4 py-3": size == "small",
-        "px-4 py-3.5": size == "medium" || !size,
+        "px-4 py-3": !size,
         "px-5 py-4": size == "large",
       }}
-      class="inline-grid gap-2 rounded-lg outline-blue-500 duration-100 focus:outline-4"
+      class="inline-flex items-center gap-2 rounded-lg outline-blue-500 duration-100 focus:outline-4"
     >
       <span
         classList={{
