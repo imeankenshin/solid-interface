@@ -22,7 +22,7 @@ function getStories({ dir = "components" }) {
 const config: StorybookConfig = {
   stories: [
     ...getStories({ dir: "components" }),
-    "../stories/*.{stories.tsx,mdx,css}",
+    "../stories/*.{stories.tsx,mdx}",
   ],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
