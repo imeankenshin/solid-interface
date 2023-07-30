@@ -2,8 +2,6 @@
   "name": "@solid-interface/hooks",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
-  "module": "dist/index.js",
   "keywords": [
     "frontend",
     "solid",
@@ -13,16 +11,22 @@
     "components",
     "hooks"
   ],
+  "author": "LinoRino",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinoRino/solid-interface#readme",
+    "directory": "packages/hooks"
+  },
   "scripts": {
     "build": "tsup src --dts",
     "lint": "tsc --noEmit --pretty"
   },
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "solid-js": "^1.7.8"
   }

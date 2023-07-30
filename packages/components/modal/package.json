@@ -2,17 +2,6 @@
   "name": "@solid-interface/modal",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
-  "scripts": {
-    "build": "tsup src",
-    "lint": "tsc --noEmit --pretty",
-    "clean": "rm -rf dist"
-  },
-  "files": [
-    "dist"
-  ],
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "keywords": [
     "frontend",
     "solid",
@@ -22,8 +11,23 @@
     "components",
     "modal"
   ],
-  "author": "",
+  "author": "LinoRino",
   "license": "MIT",
+  "main": "src/index.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinoRino/solid-interface#readme",
+    "directory": "packages/components/modal"
+  },
+  "scripts": {
+    "build": "tsup src",
+    "lint": "tsc --noEmit --pretty",
+    "clean": "rm -rf dist"
+  },
   "dependencies": {
     "@solid-interface/hooks": "workspace:^",
     "solid-js": "^1.7.8"
