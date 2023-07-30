@@ -1,6 +1,6 @@
 {
   "name": "@solid-interface/hooks",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "keywords": [
     "frontend",
@@ -8,7 +8,6 @@
     "solidjs",
     "solid-js",
     "component",
-    "components",
     "hooks"
   ],
   "author": "LinoRino",
@@ -18,6 +17,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LinoRino/solid-interface#readme",
