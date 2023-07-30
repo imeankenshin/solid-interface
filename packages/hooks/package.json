@@ -25,6 +25,9 @@
     "url": "git+https://github.com/LinoRino/solid-interface#readme",
     "directory": "packages/hooks"
   },
+  "bugs": {
+    "url": "https://github.com/LinoRino/solid-interface/issues"
+  },
   "scripts": {
     "build": "tsup src --dts",
     "lint": "tsc --noEmit --pretty"

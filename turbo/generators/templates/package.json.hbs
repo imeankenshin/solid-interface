@@ -25,12 +25,15 @@
     "url": "git+https://github.com/LinoRino/solid-interface#readme",
     "directory": "packages/components/{{kebabCase name}}"
   },
+  "bugs": {
+    "url": "https://github.com/LinoRino/solid-interface/issues"
+  },
   "scripts": {
     "build": "tsup src",
     "lint": "tsc --noEmit --pretty",
     "clean": "rm -rf dist"
   },
-  "dependencies": {
-    "solid-js": "^1.7.8"
+  "peerDependencies": {
+    "solid-js": ">=1.7"
   }
 }
