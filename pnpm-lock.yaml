@@ -87,6 +87,9 @@ importers:
 
   packages/components/modal:
     dependencies:
+      '@solid-interface/hooks':
+        specifier: workspace:^
+        version: link:../../hooks
       solid-js:
         specifier: ^1.7.8
         version: 1.7.8

@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsup src --dts",
-    "lint": "tsc --noEmit --pretty"
+    "build": "tsup src",
+    "lint": "tsc --noEmit --pretty",
+    "clean": "rm -rf dist"
   },
   "files": [
     "dist"
@@ -24,6 +25,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@solid-interface/hooks": "workspace:^",
     "solid-js": "^1.7.8"
   }
 }

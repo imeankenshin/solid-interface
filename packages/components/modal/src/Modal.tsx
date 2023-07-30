@@ -10,7 +10,7 @@ import {
   useContext,
 } from "solid-js"
 import { Portal } from "solid-js/web"
-import { useFocusableElements } from "packages/hooks/src/elements"
+import { useFocusableElements } from "@solid-interface/hooks"
 
 /*------------------------------*/
 /*    Context                   */
