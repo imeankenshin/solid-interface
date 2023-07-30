@@ -22,17 +22,18 @@ function getStories({ dir = "components" }) {
 const config: StorybookConfig = {
   stories: [
     ...getStories({ dir: "components" }),
-    "../stories/*.{stories.tsx,mdx}",
+    "../stories/*.{stories.tsx,mdx,css}",
   ],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
+    {
+      name: "@storybook/addon-styling",
+      options: {},
+    },
   ],
-  framework: {
-    name: getAbsolutePath("storybook-solidjs-vite"),
-    options: {},
-  },
+  framework: "storybook-solidjs-vite",
   docs: {
     autodocs: "tag",
   },
