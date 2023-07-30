@@ -1,9 +1,9 @@
 {
   "name": "solid_interface",
   "scripts": {
-    "dev": "solid-start dev",
+    "dev": "vite",
     "build": "trubo run build",
-    "start": "solid-start start",
+    "clean": "turbo run clean",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

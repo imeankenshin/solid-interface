@@ -30,7 +30,8 @@
   },
   "scripts": {
     "build": "tsup src --dts",
-    "lint": "tsc --noEmit --pretty"
+    "lint": "tsc --noEmit --pretty",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "solid-js": "^1.7.8"
