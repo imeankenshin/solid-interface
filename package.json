@@ -8,6 +8,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^7.1.1",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",

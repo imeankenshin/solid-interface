@@ -27,6 +27,9 @@ importers:
         specifier: ^5.22.1
         version: 5.22.1
     devDependencies:
+      '@storybook/addon-a11y':
+        specifier: ^7.1.1
+        version: 7.1.1(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-essentials':
         specifier: ^7.1.1
         version: 7.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -2106,6 +2109,34 @@ packages:
     dependencies:
       solid-js: 1.7.8
 
+  /@storybook/addon-a11y@7.1.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-wUf0ogOhoUIvZ3w8FbaRuJ4eIjmatw/JOc0PSuBbgMxlc3s6EjYALcYbVmrJx6zkvbQRXP7cFex3d3uGgimpkg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      '@storybook/addon-highlight': 7.1.1
+      '@storybook/channels': 7.1.1
+      '@storybook/client-logger': 7.1.1
+      '@storybook/components': 7.1.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/core-events': 7.1.1
+      '@storybook/global': 5.0.0
+      '@storybook/manager-api': 7.1.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/preview-api': 7.1.1
+      '@storybook/theming': 7.1.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/types': 7.1.1
+      axe-core: 4.7.2
+      lodash: 4.17.21
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-resize-detector: 7.1.2(react-dom@18.2.0)(react@18.2.0)
+    dev: true
+
   /@storybook/addon-actions@7.1.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-IDxBmNnVgLFfQ407MxOUJmqjz0hgiZB9syi4sfp7BKp5MIPUDT1m+z603kGrvx0bk0W0DPqkp/H8ySEGEx0x6g==}
     peerDependencies:
@@ -3948,6 +3979,11 @@ packages:
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /axe-core@4.7.2:
+    resolution: {integrity: sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==}
+    engines: {node: '>=4'}
     dev: true
 
   /axios@0.25.0(debug@4.3.4):
@@ -8469,6 +8505,17 @@ packages:
 
   /react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
+    dev: true
+
+  /react-resize-detector@7.1.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-zXnPJ2m8+6oq9Nn8zsep/orts9vQv3elrpA+R8XTcW7DVVUJ9vwDwMXaBtykAYjMnkCIaOoK9vObyR7ZgFNlOw==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lodash: 4.17.21
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /react@18.2.0:
