@@ -1,0 +1,39 @@
+{
+  "name": "@solid-interface/{{kebabCase name}}",
+  "version": "0.1.0",
+  "description": "A {{name}} component for SolidJS",
+  "keywords": [
+    "frontend",
+    "solid",
+    "solidjs",
+    "solid-js",
+    "component",
+    "{{kebabCase name}}"
+  ],
+  "author": "LinoRino",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinoRino/solid-interface#readme",
+    "directory": "packages/components/{{kebabCase name}}"
+  },
+  "bugs": {
+    "url": "https://github.com/LinoRino/solid-interface/issues"
+  },
+  "scripts": {
+    "build": "tsup src",
+    "lint": "tsc --noEmit --pretty",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "solid-js": ">=1.7"
+  }
+}
