@@ -25,6 +25,11 @@ interface ModalContextProps {
 
 const ModalContext = createContext<ModalContextProps>()
 
+export const useModalContext = () => {
+  const context = useContext(ModalContext)
+  return context
+}
+
 /*------------------------------*/
 /*    Root                      */
 /*------------------------------*/
@@ -114,6 +119,13 @@ const Base: Component<ModalBaseProps> = (props) => {
     <Show when={context.open()}>
       <Portal ref={(el) => (dialogRef = el)}>
         <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
           {...props}
           id={context.id}
           data-status={context.open() ? "open" : "closed"}
@@ -202,14 +214,6 @@ const Description: Component<ModalDescriptionProps> = (props) => {
       {props.children}
     </p>
   )
-}
-
-export const useModalContext = () => {
-  const context = useContext(ModalContext)
-  if (!context) {
-    throw new Error("ModalContext is not provided")
-  }
-  return context
 }
 
 /*------------------------------*/
