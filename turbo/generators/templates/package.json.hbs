@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "tsup src",
-    "lint": "tsc --noEmit --pretty",
+    "lint": "tsc --noEmit --pretty && eslint --ext .ts,.tsx .",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
