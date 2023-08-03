@@ -90,10 +90,9 @@ const Base: Component<ModalBaseProperties> = (properties) => {
       // モーダル内のフォーカス可能な要素のうち、最初の要素にフォーカスを当てる
       const focusableElements = useFocusableElements(dialogReference)
       if (focusableElements.length > 0) {
-        console.log(focusableElements[0])
         ;(focusableElements[0] as HTMLElement).focus()
       } else {
-        console.warn("Modal must have at least one focusable child")
+        throw new Error("Modal must have at least one focusable child")
       }
       // モーダル外の要素を全てinertにする
       const ElementsOutsideModal = document.body.querySelectorAll(
