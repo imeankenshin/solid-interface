@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "storybook-solidjs"
 import Modal from "../src"
 import type { Component } from "solid-js"
 
-interface ModalForExampleProps {
+interface ModalForExampleProperties {
   title: string
   description: string
   maxWidth: string
 }
-const ModalForExample: Component<ModalForExampleProps> = ({
+const ModalForExample: Component<ModalForExampleProperties> = ({
   title,
   description,
   maxWidth,
@@ -17,8 +17,8 @@ const ModalForExample: Component<ModalForExampleProps> = ({
       <Modal.Trigger class="rounded-lg bg-gray-300 px-4 py-3 text-base hover:bg-gray-200 focus:bg-gray-200">
         Open Modal
       </Modal.Trigger>
-      <Modal.Base class="fixed left-0 top-0 grid h-full w-full place-items-center">
-        <Modal.Overlay class="absolute z-10 h-full w-full bg-black/50" />
+      <Modal.Base class="fixed left-0 top-0 grid h-full w-full scale-0 place-items-center">
+        <Modal.Overlay class="absolute z-10 h-full w-full bg-black/50 " />
         <Modal.Content
           class="z-20 rounded-lg bg-white p-4"
           style={{ "max-width": maxWidth }}

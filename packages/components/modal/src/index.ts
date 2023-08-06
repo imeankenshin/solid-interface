@@ -1,1 +1,1 @@
-export { default, useModalContext } from "./Modal"
+export { default, useModalContext } from "./modal"
