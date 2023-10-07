@@ -1,7 +1,6 @@
 {
   "name": "solid_interface",
   "scripts": {
-    "dev": "vite",
     "build": "trubo run build",
     "clean": "turbo run clean",
     "storybook": "storybook dev -p 6006",
@@ -52,11 +51,50 @@
     "undici": "^5.22.1"
   },
   "engines": {
-    "node": ">=16.8"
+    "node": "^18"
   },
   "eslintConfig": {
     "extends": [
+      "plugin:unicorn/recommended",
+      "prettier",
       "plugin:storybook/recommended"
-    ]
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "function",
+          "format": [
+            "camelCase"
+          ]
+        }
+      ],
+      "no-console": "warn",
+      "no-unreachable": "error",
+      "no-unsafe-finally": "error",
+      "no-unsafe-negation": "error",
+      "no-unsafe-optional-chaining": "error",
+      "no-unused-vars": "error",
+      "no-use-before-define": "error",
+      "no-var": "error",
+      "prefer-const": "error",
+      "prefer-template": "error"
+    }
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ],
+    "semi": false,
+    "singleQuote": false
   }
 }
