@@ -37,10 +37,6 @@ interface ModalRootProperties extends JSX.HTMLAttributes<HTMLDivElement> {
   onOpenChange?: (open: boolean) => void
 }
 
-/**
- * モーダルのルート要素
- * @param props
- */
 const Root: Component<ModalRootProperties> = (properties) => {
   const [open, setOpen] = createSignal(false)
   const id = createUniqueId()
@@ -63,10 +59,6 @@ const Root: Component<ModalRootProperties> = (properties) => {
 /*------------------------------*/
 
 interface ModalBaseProperties extends JSX.HTMLAttributes<HTMLDivElement> {}
-/**
- * モーダルをポータルでレンダリングするコンポーネント
- * @param props
- */
 
 const Base: Component<ModalBaseProperties> = (properties) => {
   let dialogReference: HTMLDivElement
@@ -124,10 +116,6 @@ const Base: Component<ModalBaseProperties> = (properties) => {
 export interface ModalOverlayProperties
   extends JSX.HTMLAttributes<HTMLDivElement> {}
 
-/**
- * モーダルの背景を表すコンポーネント
- * @param props
- */
 const Overlay: Component<ModalOverlayProperties> = (properties) => {
   return <div {...properties} aria-hidden="true" />
 }
@@ -204,9 +192,6 @@ const Description: Component<ModalDescriptionProperties> = (properties) => {
 interface ModalTriggerProperties
   extends JSX.HTMLAttributes<HTMLButtonElement> {}
 
-/**
- * モーダルを開くためのトリガーとなるコンポーネント
- */
 const Trigger: Component<ModalTriggerProperties> = (properties) => {
   const context = useContext(ModalContext)
   if (!context) {
@@ -230,10 +215,6 @@ const Trigger: Component<ModalTriggerProperties> = (properties) => {
 
 interface ModalCloserProperties extends JSX.HTMLAttributes<HTMLButtonElement> {}
 
-/**
- * モーダルを閉じるためのトリガーとなるコンポーネント
- * @param props
- */
 const Closer: Component<ModalCloserProperties> = (properties) => {
   const context = useContext(ModalContext)
   if (!context) {
