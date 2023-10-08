@@ -1,7 +1,5 @@
 import {
-  Accessor,
   Component,
-  JSX,
   Show,
   createContext,
   createEffect,
@@ -9,6 +7,7 @@ import {
   createUniqueId,
   useContext,
 } from "solid-js"
+import type { Accessor, Setter, JSX } from "solid-js"
 import { Portal } from "solid-js/web"
 import { useFocusableElements } from "@solid-interface/hooks"
 
@@ -19,8 +18,7 @@ import { useFocusableElements } from "@solid-interface/hooks"
 interface ModalContextProperties {
   id: string
   open: Accessor<boolean>
-  show: Accessor<true>
-  close: Accessor<false>
+  setOpen: Setter<boolean>
 }
 
 const ModalContext = createContext<ModalContextProperties>()
@@ -52,12 +50,7 @@ const Root: Component<ModalRootProperties> = (properties) => {
       value={{
         id,
         open,
-        show: () => {
-          return setOpen(true)
-        },
-        close: () => {
-          return setOpen(false)
-        },
+        setOpen,
       }}
     >
       {properties.children}
@@ -70,7 +63,6 @@ const Root: Component<ModalRootProperties> = (properties) => {
 /*------------------------------*/
 
 interface ModalBaseProperties extends JSX.HTMLAttributes<HTMLDivElement> {}
-
 /**
  * モーダルをポータルでレンダリングするコンポーネント
  * @param props
@@ -95,21 +87,21 @@ const Base: Component<ModalBaseProperties> = (properties) => {
         throw new Error("Modal must have at least one focusable child")
       }
       // モーダル外の要素を全てinertにする
-      const ElementsOutsideModal = document.body.querySelectorAll(
+      const ElementsOutsideModal = document.body.querySelectorAll<HTMLElement>(
         "body > *:not([data-status=open])"
       )
       for (const element of ElementsOutsideModal) {
-        if (element !== dialogReference)
-          (element as HTMLElement).setAttribute("inert", "")
+        if (element !== dialogReference) element.setAttribute("inert", "")
       }
     } else {
       document.body.style.overflow = ""
       // モーダル内の要素以外を全てフォーカス可能にする
-      const focusableElementsOutsideModal = document.body.querySelectorAll(
-        "body > *:not([data-status=open])"
-      )
+      const focusableElementsOutsideModal =
+        document.body.querySelectorAll<HTMLElement>(
+          "body > *:not([data-status=open])"
+        )
       for (const element of focusableElementsOutsideModal) {
-        ;(element as HTMLElement).removeAttribute("inert")
+        element.removeAttribute("inert")
       }
     }
   })
@@ -117,18 +109,7 @@ const Base: Component<ModalBaseProperties> = (properties) => {
   return (
     <Show when={context.open()}>
       <Portal ref={(element) => (dialogReference = element)}>
-        <div
-          {...properties}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
-          id={context.id}
-          data-status={context.open() ? "open" : "closed"}
-        >
+        <div {...properties} id={context.id} data-open={context.open()}>
           {properties.children}
         </div>
       </Portal>
@@ -235,7 +216,7 @@ const Trigger: Component<ModalTriggerProperties> = (properties) => {
     <button
       {...properties}
       onClick={() => {
-        context.show()
+        context.setOpen(true)
       }}
     >
       {properties.children}
@@ -262,7 +243,7 @@ const Closer: Component<ModalCloserProperties> = (properties) => {
     <button
       {...properties}
       onClick={() => {
-        context.close()
+        context.setOpen(false)
       }}
     >
       {properties.children}
