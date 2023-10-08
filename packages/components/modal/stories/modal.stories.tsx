@@ -7,6 +7,7 @@ interface ModalForExampleProperties {
   description: string
   maxWidth: string
 }
+
 const ModalForExample: Component<ModalForExampleProperties> = ({
   title,
   description,
@@ -17,10 +18,10 @@ const ModalForExample: Component<ModalForExampleProperties> = ({
       <Modal.Trigger class="rounded-lg bg-gray-300 px-4 py-3 text-base hover:bg-gray-200 focus:bg-gray-200">
         Open Modal
       </Modal.Trigger>
-      <Modal.Base class="fixed left-0 top-0 grid h-full w-full scale-0 place-items-center">
-        <Modal.Overlay class="absolute z-10 h-full w-full bg-black/50 " />
+      <Modal.Base class="fixed inset-0 grid h-full w-full animate-fade-in place-items-center data-[status=open]:animate-fade-out">
+        <Modal.Overlay class="absolute z-10 h-full w-full bg-black/30" />
         <Modal.Content
-          class="z-20 rounded-lg bg-white p-4"
+          class="z-20 w-full animate-scale-in rounded-2xl bg-white p-6 data-[open]:animate-scale-out"
           style={{ "max-width": maxWidth }}
         >
           <Modal.Title class="my-2 text-3xl font-bold">{title}</Modal.Title>
