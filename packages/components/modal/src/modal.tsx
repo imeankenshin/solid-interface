@@ -1,7 +1,5 @@
 import {
-  Accessor,
   Component,
-  JSX,
   Show,
   createContext,
   createEffect,
@@ -9,6 +7,7 @@ import {
   createUniqueId,
   useContext,
 } from "solid-js"
+import type { Accessor, Setter, JSX } from "solid-js"
 import { Portal } from "solid-js/web"
 import { useFocusableElements } from "@solid-interface/hooks"
 
@@ -16,15 +15,23 @@ import { useFocusableElements } from "@solid-interface/hooks"
 /*    Context                   */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalContext
+ */
 interface ModalContextProperties {
   id: string
   open: Accessor<boolean>
-  show: Accessor<true>
-  close: Accessor<false>
+  setOpen: Setter<boolean>
 }
 
+/**
+ * Modal context to share state between components
+ */
 const ModalContext = createContext<ModalContextProperties>()
 
+/**
+ * Hook to access the ModalContext
+ */
 export const useModalContext = () => {
   const context = useContext(ModalContext)
   return context
@@ -34,14 +41,16 @@ export const useModalContext = () => {
 /*    Root                      */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalRoot component
+ */
 interface ModalRootProperties extends JSX.HTMLAttributes<HTMLDivElement> {
   open?: boolean
   onOpenChange?: (open: boolean) => void
 }
 
 /**
- * モーダルのルート要素
- * @param props
+ * Root component of the Modal
  */
 const Root: Component<ModalRootProperties> = (properties) => {
   const [open, setOpen] = createSignal(false)
@@ -52,12 +61,7 @@ const Root: Component<ModalRootProperties> = (properties) => {
       value={{
         id,
         open,
-        show: () => {
-          return setOpen(true)
-        },
-        close: () => {
-          return setOpen(false)
-        },
+        setOpen,
       }}
     >
       {properties.children}
@@ -69,13 +73,14 @@ const Root: Component<ModalRootProperties> = (properties) => {
 /*    Portal                    */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalBase component
+ */
 interface ModalBaseProperties extends JSX.HTMLAttributes<HTMLDivElement> {}
 
 /**
- * モーダルをポータルでレンダリングするコンポーネント
- * @param props
+ * Base component of the Modal
  */
-
 const Base: Component<ModalBaseProperties> = (properties) => {
   let dialogReference: HTMLDivElement
   const context = useContext(ModalContext)
@@ -87,29 +92,26 @@ const Base: Component<ModalBaseProperties> = (properties) => {
     if (context.open()) {
       document.body.style.overflow = "hidden"
 
-      // モーダル内のフォーカス可能な要素のうち、最初の要素にフォーカスを当てる
       const focusableElements = useFocusableElements(dialogReference)
       if (focusableElements.length > 0) {
         ;(focusableElements[0] as HTMLElement).focus()
       } else {
         throw new Error("Modal must have at least one focusable child")
       }
-      // モーダル外の要素を全てinertにする
-      const ElementsOutsideModal = document.body.querySelectorAll(
+      const ElementsOutsideModal = document.body.querySelectorAll<HTMLElement>(
         "body > *:not([data-status=open])"
       )
       for (const element of ElementsOutsideModal) {
-        if (element !== dialogReference)
-          (element as HTMLElement).setAttribute("inert", "")
+        if (element !== dialogReference) element.setAttribute("inert", "")
       }
     } else {
       document.body.style.overflow = ""
-      // モーダル内の要素以外を全てフォーカス可能にする
-      const focusableElementsOutsideModal = document.body.querySelectorAll(
-        "body > *:not([data-status=open])"
-      )
+      const focusableElementsOutsideModal =
+        document.body.querySelectorAll<HTMLElement>(
+          "body > *:not([data-status=open])"
+        )
       for (const element of focusableElementsOutsideModal) {
-        ;(element as HTMLElement).removeAttribute("inert")
+        element.removeAttribute("inert")
       }
     }
   })
@@ -117,18 +119,7 @@ const Base: Component<ModalBaseProperties> = (properties) => {
   return (
     <Show when={context.open()}>
       <Portal ref={(element) => (dialogReference = element)}>
-        <div
-          {...properties}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
-          id={context.id}
-          data-status={context.open() ? "open" : "closed"}
-        >
+        <div {...properties} id={context.id} data-open={context.open()}>
           {properties.children}
         </div>
       </Portal>
@@ -140,12 +131,14 @@ const Base: Component<ModalBaseProperties> = (properties) => {
 /*    Overlay                   */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalOverlay component
+ */
 export interface ModalOverlayProperties
   extends JSX.HTMLAttributes<HTMLDivElement> {}
 
 /**
- * モーダルの背景を表すコンポーネント
- * @param props
+ * Overlay component of the Modal
  */
 const Overlay: Component<ModalOverlayProperties> = (properties) => {
   return <div {...properties} aria-hidden="true" />
@@ -155,8 +148,14 @@ const Overlay: Component<ModalOverlayProperties> = (properties) => {
 /*    Content                   */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalContent component
+ */
 interface ModalContentProperties extends JSX.HTMLAttributes<HTMLDivElement> {}
 
+/**
+ * Content component of the Modal
+ */
 const Content = (properties: ModalContentProperties) => {
   const context = useContext(ModalContext)
   if (!context) {
@@ -179,8 +178,14 @@ const Content = (properties: ModalContentProperties) => {
 /*    Title                     */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalTitle component
+ */
 interface ModalTitleProperties extends JSX.HTMLAttributes<HTMLHeadingElement> {}
 
+/**
+ * Title component of the Modal
+ */
 const Title: Component<ModalTitleProperties> = (properties) => {
   const context = useContext(ModalContext)
   if (!context) {
@@ -201,9 +206,15 @@ const Title: Component<ModalTitleProperties> = (properties) => {
 /*    Description               */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalDescription component
+ */
 interface ModalDescriptionProperties
   extends JSX.HTMLAttributes<HTMLParagraphElement> {}
 
+/**
+ * Description component of the Modal
+ */
 const Description: Component<ModalDescriptionProperties> = (properties) => {
   const context = useContext(ModalContext)
   if (!context) {
@@ -220,11 +231,14 @@ const Description: Component<ModalDescriptionProperties> = (properties) => {
 /*    Trigger                   */
 /*------------------------------*/
 
+/**
+ * Properties of the ModalTrigger component
+ */
 interface ModalTriggerProperties
   extends JSX.HTMLAttributes<HTMLButtonElement> {}
 
 /**
- * モーダルを開くためのトリガーとなるコンポーネント
+ * Trigger component of the Modal
  */
 const Trigger: Component<ModalTriggerProperties> = (properties) => {
   const context = useContext(ModalContext)
@@ -235,7 +249,7 @@ const Trigger: Component<ModalTriggerProperties> = (properties) => {
     <button
       {...properties}
       onClick={() => {
-        context.show()
+        context.setOpen(true)
       }}
     >
       {properties.children}
@@ -249,10 +263,6 @@ const Trigger: Component<ModalTriggerProperties> = (properties) => {
 
 interface ModalCloserProperties extends JSX.HTMLAttributes<HTMLButtonElement> {}
 
-/**
- * モーダルを閉じるためのトリガーとなるコンポーネント
- * @param props
- */
 const Closer: Component<ModalCloserProperties> = (properties) => {
   const context = useContext(ModalContext)
   if (!context) {
@@ -262,7 +272,7 @@ const Closer: Component<ModalCloserProperties> = (properties) => {
     <button
       {...properties}
       onClick={() => {
-        context.close()
+        context.setOpen(false)
       }}
     >
       {properties.children}
