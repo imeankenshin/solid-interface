@@ -13,12 +13,12 @@
       "solid-start/env",
     ],
     "baseUrl": "./",
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    }
   },
+  "include": [
+    "packages/**/**/src",
+    "packages/**/**/tests",
+    "packages/**/**/stories",
+  ],
   "exclude": [
     "node_modules",
     "dist",

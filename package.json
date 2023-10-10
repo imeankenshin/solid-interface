@@ -3,6 +3,7 @@
   "scripts": {
     "build": "trubo run build",
     "clean": "turbo run clean",
+    "lint": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

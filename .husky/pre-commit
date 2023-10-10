@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 . "$(dirname -- "$0")/_/husky.sh"
 
-turbo run lint && turbo run build
+pnpm run lint && turbo run build
