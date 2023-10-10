@@ -95,5 +95,8 @@
     ],
     "semi": false,
     "singleQuote": false
+  },
+  "dependencies": {
+    "solid-js": "^1.8.0"
   }
 }

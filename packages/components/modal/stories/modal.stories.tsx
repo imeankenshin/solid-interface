@@ -1,39 +1,6 @@
 import type { Meta, StoryObj } from "storybook-solidjs"
-import Modal from "../src"
-import type { Component } from "solid-js"
-
-interface ModalForExampleProperties {
-  title: string
-  description: string
-  maxWidth: string
-}
-
-const ModalForExample: Component<ModalForExampleProperties> = ({
-  title,
-  description,
-  maxWidth,
-}) => {
-  return (
-    <Modal.Root>
-      <Modal.Trigger class="rounded-lg bg-gray-300 px-4 py-3 text-base hover:bg-gray-200 focus:bg-gray-200">
-        Open Modal
-      </Modal.Trigger>
-      <Modal.Base class="fixed inset-0 grid h-full w-full animate-fade-in place-items-center data-[status=open]:animate-fade-out">
-        <Modal.Overlay class="absolute z-10 h-full w-full bg-black/30" />
-        <Modal.Content
-          class="z-20 w-full animate-scale-in rounded-2xl bg-white p-6 data-[open]:animate-scale-out"
-          style={{ "max-width": maxWidth }}
-        >
-          <Modal.Title class="my-2 text-3xl font-bold">{title}</Modal.Title>
-          {description && (
-            <Modal.Description class="my-2">{description}</Modal.Description>
-          )}
-          <Modal.Closer>Close Modal</Modal.Closer>
-        </Modal.Content>
-      </Modal.Base>
-    </Modal.Root>
-  )
-}
+import { within } from "@storybook/testing-library"
+import { ModalForExample } from "./modal-example"
 
 const meta = {
   title: "Example/Modal",
@@ -41,8 +8,22 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     maxWidth: { control: "text" },
+    radius: {
+      control: {
+        type: "select",
+      },
+      options: ["none", "sm", "md", "lg", "xl", "2xl", "3xl", "full"],
+    },
   },
-} as Meta<typeof ModalForExample>
+  parameters: {},
+  decorators: [
+    (Story) => (
+      <div class="flex items-center justify-center">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof ModalForExample>
 
 export default meta
 
@@ -53,6 +34,12 @@ export const Default: Story = {
     title: "Modal Title",
     description: "Modal Description",
     maxWidth: "640px",
+    radius: "md",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const trigger = await canvas.findByText("Open Modal")
+    trigger.click()
   },
 }
 
