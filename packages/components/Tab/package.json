@@ -1,0 +1,39 @@
+{
+  "name": "@solid-interface/tab",
+  "version": "0.1.0",
+  "description": "A Tab component for SolidJS",
+  "keywords": [
+    "frontend",
+    "solid",
+    "solidjs",
+    "solid-js",
+    "component",
+    "tab"
+  ],
+  "author": "LinoRino",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinoRino/solid-interface#readme",
+    "directory": "packages/components/tab"
+  },
+  "bugs": {
+    "url": "https://github.com/LinoRino/solid-interface/issues"
+  },
+  "scripts": {
+    "build": "tsup src",
+    "lint": "tsc --noEmit --pretty && eslint --ext .ts,.tsx .",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "solid-js": ">=1.7"
+  }
+}
